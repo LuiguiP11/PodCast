@@ -9,59 +9,58 @@
         body {
             background-color: #121212;
             color: white;
-            font-family: 'Montserrat', sans-serif; /* Aplicamos la fuente Montserrat */
+            font-family: 'Montserrat', sans-serif;
             margin: 0;
-            overflow-x: hidden; /* Oculta las barras de scroll horizontales */
+            overflow-x: hidden;
         }
         #p2 {
             background-color: #1e1e1e;
             padding: 20px;
             border-radius: 8px;
-            margin: 20px auto; /* Centrar p2 */
-            display: block; /* Visible por defecto en esta página */
-            opacity: 1; /* Visible por defecto en esta página */
-            text-align: center; /* Centrar el texto dentro de p2 */
-            max-width: 800px; /* Limitar el ancho de p2 */
+            margin: 20px auto;
+            display: block;
+            opacity: 1;
+            text-align: center;
+            max-width: 800px;
         }
         .p2-content-wrapper {
-            /* Estos estilos serán manejados por .futuristic-container-yellow */
-            margin: 20px auto; /* Centrar el contenedor dentro de p2 */
-            max-width: 350px; /* Ajusta el ancho máximo para que se vea como un bloque */
+            margin: 20px auto;
+            max-width: 350px;
         }
         #p2 .header-image {
-            width: 100%; /* Se adapta al ancho del contenedor */
+            width: 100%;
             height: auto;
-            display: block; /* Para centrar la imagen */
-            margin: 0 auto 20px auto; /* Centrar y añadir espacio abajo */
-            border-radius: 8px; /* Bordes redondeados para la imagen */
-            box-shadow: 5px 5px 0px rgba(255, 255, 255, 0.8); /* Sombra blanca nítida */
+            display: block;
+            margin: 0 auto 20px auto;
+            border-radius: 8px;
+            box-shadow: 5px 5px 0px rgba(255, 255, 255, 0.8);
         }
         .text-audio-block {
-            width: 100%; /* Se adapta al ancho del contenedor */
-            margin: 0 auto; /* Centrar el bloque */
+            width: 100%;
+            margin: 0 auto;
         }
         #p2 h2 {
-            font-family: 'Montserrat', sans-serif; /* Aplicamos la fuente Montserrat al título */
-            font-size: 0.9em; /* Reducimos el tamaño del texto aún más */
-            color: #E0E0E0; /* Un color de texto que resalte */
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9em;
+            color: #E0E0E0;
             margin-top: 20px;
-            margin-bottom: 30px; /* Más espacio entre el título y el audio */
+            margin-bottom: 30px;
         }
         .audio-icon-container {
             display: flex;
-            align-items: center; /* Alinea verticalmente en el centro */
-            justify-content: center; /* Centra el contenedor horizontalmente */
-            margin: 0 auto; /* Centrar el contenedor */
-            gap: 10px; /* Espacio entre el icono y el audio */
-            width: 100%; /* Se adapta al ancho del contenedor */
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            gap: 10px;
+            width: 100%;
         }
         .microphone-icon {
-            font-size: 30px; /* Tamaño del icono */
-            color: white; /* Color del icono */
+            font-size: 30px;
+            color: white;
         }
         #p2 audio {
-            height: 20px; /* Altura deseada para el reproductor de audio */
-            width: 100%; /* Ocupa todo el ancho disponible */
+            height: 20px;
+            width: 100%;
         }
 
         /* Animaciones */
@@ -103,14 +102,14 @@
         }
 
         #welcomeText {
-            font-size: 3em; /* Tamaño grande */
-            font-weight: 700; /* Negrita */
-            color: #00ffff; /* Cian brillante */
-            text-shadow: 0 0 15px rgba(0, 255, 255, 0.8), /* Brillo neón */
+            font-size: 3em;
+            font-weight: 700;
+            color: #00ffff;
+            text-shadow: 0 0 15px rgba(0, 255, 255, 0.8),
                          0 0 25px rgba(0, 255, 255, 0.6);
-            margin-bottom: 30px; /* Espacio debajo del texto */
-            letter-spacing: 3px; /* Espaciado entre letras para un look futurista */
-            animation: neonGlow 1.5s ease-in-out infinite alternate; /* Animación de brillo */
+            margin-bottom: 30px;
+            letter-spacing: 3px;
+            animation: neonGlow 1.5s ease-in-out infinite alternate;
         }
 
         @keyframes neonGlow {
@@ -126,22 +125,22 @@
         }
 
         .futuristic-container-yellow {
-            background: linear-gradient(145deg, #3a3a3a, #2a2a2a); /* Fondo oscuro */
+            background: linear-gradient(145deg, #3a3a3a, #2a2a2a);
             padding: 20px;
             border-radius: 15px;
-            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.2), /* Sombra dorada */
-                        0 0 15px rgba(255, 215, 0, 0.1); /* Resplandor dorado */
-            border: 1px solid #ffd700; /* Borde dorado */
-            margin: 20px auto; /* Centrar y dar espacio */
-            width: 90%; /* Ancho flexible */
-            max-width: 400px; /* Ancho máximo para pantallas grandes */
-            text-align: center; /* Centrar contenido */
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.2),
+                         0 0 15px rgba(255, 215, 0, 0.1);
+            border: 1px solid #ffd700;
+            margin: 20px auto;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
             transition: all 0.3s ease;
         }
 
         .futuristic-container-yellow:hover {
             box-shadow: 0 10px 25px rgba(255, 215, 0, 0.3),
-                        0 0 20px rgba(255, 215, 0, 0.2);
+                         0 0 20px rgba(255, 215, 0, 0.2);
             transform: translateY(-2px);
         }
 
@@ -150,45 +149,45 @@
             align-items: center;
             justify-content: center;
             gap: 15px;
-            margin-top: 5px; /* Ajuste para acercar al micrófono */
-            background: linear-gradient(145deg, #2a2a2a, #1a1a1a); /* Degradado oscuro y futurista */
-            padding: 18px 30px; /* Un poco más de padding */
-            border-radius: 15px; /* Bordes más redondeados */
-            box-shadow: 0 8px 20px rgba(0, 255, 255, 0.2), /* Sombra con brillo cian */
-                        0 0 15px rgba(0, 255, 255, 0.1); /* Pequeño resplandor */
-            border: 1px solid #00ffff; /* Borde cian brillante */
-            max-width: 380px; /* Un poco más ancho */
+            margin-top: 5px;
+            background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+            padding: 18px 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 255, 255, 0.2),
+                         0 0 15px rgba(0, 255, 255, 0.1);
+            border: 1px solid #00ffff;
+            max-width: 380px;
             margin-left: auto;
             margin-right: auto;
-            transition: all 0.3s ease; /* Transición suave para hover */
+            transition: all 0.3s ease;
         }
 
         .custom-audio-controls:hover {
             box-shadow: 0 10px 25px rgba(0, 255, 255, 0.3),
-                        0 0 20px rgba(0, 255, 255, 0.2);
-            transform: translateY(-2px); /* Efecto de "flotar" */
+                         0 0 20px rgba(0, 255, 255, 0.2);
+            transform: translateY(-2px);
         }
 
         #playPauseBtn {
-            background: linear-gradient(45deg, #007bff, #00c6ff); /* Degradado azul a cian */
+            background: linear-gradient(45deg, #007bff, #00c6ff);
             color: white;
             border: none;
             border-radius: 50%;
-            width: 60px; /* Un poco más grande */
+            width: 60px;
             height: 60px;
-            font-size: 2.2em; /* Icono más grande */
+            font-size: 2.2em;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4); /* Sombra azul */
-            text-shadow: 0 0 8px rgba(255, 255, 255, 0.7); /* Brillo en el icono */
+            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
         }
 
         #playPauseBtn:hover {
-            background: linear-gradient(45deg, #00c6ff, #007bff); /* Invertir degradado al hover */
-            transform: scale(1.1); /* Efecto de zoom */
+            background: linear-gradient(45deg, #00c6ff, #007bff);
+            transform: scale(1.1);
             box-shadow: 0 8px 20px rgba(0, 123, 255, 0.6);
         }
 
@@ -199,48 +198,48 @@
 
         .progress-container {
             flex-grow: 1;
-            height: 12px; /* Un poco más alto */
-            background-color: #333; /* Fondo más oscuro */
+            height: 12px;
+            background-color: #333;
             border-radius: 6px;
             cursor: pointer;
             overflow: hidden;
             position: relative;
-            border: 1px solid #555; /* Borde sutil */
+            border: 1px solid #555;
         }
 
         .progress-bar {
             height: 100%;
             width: 0%;
-            background: linear-gradient(90deg, #28a745, #00ff00); /* Degradado verde neón */
+            background: linear-gradient(90deg, #28a745, #00ff00);
             border-radius: 6px;
             transition: width 0.1s linear;
-            box-shadow: 0 0 10px rgba(0, 255, 0, 0.5); /* Brillo verde */
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
         }
 
         #volumeSlider {
-            width: 100px; /* Un poco más ancho */
+            width: 100px;
             -webkit-appearance: none;
             background: transparent;
         }
 
         #volumeSlider::-webkit-slider-runnable-track {
-            height: 10px; /* Un poco más alto */
+            height: 10px;
             background: #444;
             border-radius: 5px;
-            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.6); /* Sombra interna */
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.6);
         }
 
         #volumeSlider::-webkit-slider-thumb {
             -webkit-appearance: none;
-            height: 22px; /* Más grande */
-            width: 22px; /* Más grande */
+            height: 22px;
+            width: 22px;
             border-radius: 50%;
-            background: linear-gradient(45deg, #ffc107, #ffeb3b); /* Degradado amarillo a dorado */
-            margin-top: -6px; /* Ajuste para centrar */
+            background: linear-gradient(45deg, #ffc107, #ffeb3b);
+            margin-top: -6px;
             box-shadow: 0 3px 8px rgba(255, 193, 7, 0.5),
-                        0 0 10px rgba(255, 255, 0, 0.3); /* Brillo amarillo */
+                         0 0 10px rgba(255, 255, 0, 0.3);
             cursor: grab;
-            border: 1px solid #ffa000; /* Borde naranja */
+            border: 1px solid #ffa000;
             transition: all 0.2s ease;
         }
 
@@ -255,23 +254,22 @@
         }
 
         #pdfViewer {
-            width: 100%; /* Ocupa todo el ancho disponible */
-            height: 70vh; /* Una altura que se adapta al 70% de la altura de la ventana */
-            /* Los estilos de borde, sombra y margen serán manejados por .futuristic-container-yellow */
+            width: 100%;
+            height: 70vh;
         }
 
         #pdfCanvas {
-            width: 100%; /* Ocupa todo el ancho disponible */
-            height: 70vh; /* Una altura que se adapta al 70% de la altura de la ventana */
-            border: 1px solid #ffd700; /* Borde dorado, a juego con los contenedores */
-            border-radius: 10px; /* Bordes redondeados */
-            margin-top: 20px; /* Espacio encima del canvas */
-            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.2); /* Sombra con brillo dorado */
-            background-color: #fff; /* Fondo blanco para el PDF */
+            width: 100%;
+            height: 70vh;
+            border: 1px solid #ffd700;
+            border-radius: 10px;
+            margin-top: 20px;
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.2);
+            background-color: #fff;
         }
 
         .pdf-button {
-            background-color: #FF5733; /* Un color naranja vibrante */
+            background-color: #FF5733;
             color: white;
             padding: 15px 30px;
             border: none;
@@ -279,26 +277,26 @@
             font-size: 1.2em;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 0 #CC4529, /* Sombra inferior para efecto 3D */
-                        0 2px 0 rgba(255, 255, 255, 0.3) inset, /* Bisel superior claro */
-                        0 -2px 0 rgba(0, 0, 0, 0.2) inset; /* Bisel inferior oscuro */
+            box-shadow: 0 5px 0 #CC4529,
+                         0 2px 0 rgba(255, 255, 255, 0.3) inset,
+                         0 -2px 0 rgba(0, 0, 0, 0.2) inset;
             transform: translateY(0);
-            margin-top: 20px; /* Espacio encima del botón */
+            margin-top: 20px;
         }
 
         .pdf-button:hover {
             background-color: #E04E2F;
             transform: translateY(-2px);
             box-shadow: 0 7px 0 #CC4529,
-                        0 2px 0 rgba(255, 255, 255, 0.3) inset,
-                        0 -2px 0 rgba(0, 0, 0, 0.2) inset;
+                         0 2px 0 rgba(255, 255, 255, 0.3) inset,
+                         0 -2px 0 rgba(0, 0, 0, 0.2) inset;
         }
 
         .pdf-button:active {
             transform: translateY(3px);
             box-shadow: 0 2px 0 #CC4529,
-                        0 2px 0 rgba(255, 255, 255, 0.3) inset,
-                        0 -2px 0 rgba(0, 0, 0, 0.2) inset;
+                         0 2px 0 rgba(255, 255, 255, 0.3) inset,
+                         0 -2px 0 rgba(0, 0, 0, 0.2) inset;
         }
     </style>
 </head>
@@ -313,7 +311,8 @@
                 <div class="audio-icon-container">
                     <span class="microphone-icon">🎤</span>
                     <audio id="podcastAudio">
-                        <source src="https://github.com/LuiguiP11/PodCast/raw/main/Podcast.mp3" type="audio/mp3">
+                        <!-- CAMBIO CLAVE AQUÍ: Usa una ruta relativa para el audio -->
+                        <source src="./Podcast.mp3" type="audio/mp3">
                         Tu navegador no soporta la etiqueta de audio.
                     </audio>
                     <div class="custom-audio-controls">
