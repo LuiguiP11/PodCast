@@ -1,14 +1,13 @@
-// Importa las librerías de PDF.js. Asegúrate de que las rutas sean correctas
-// si las estás sirviendo localmente desde tu proyecto Vercel.
-// Si PDF.js no está en la raíz de tu proyecto, estas rutas también necesitarán ser ajustadas.
-import * as pdfjsLib from '/pdfjs/pdf.js';
+// Importa las librerías de PDF.js desde un CDN.
+// Esto evita la necesidad de alojar los archivos pdf.js y pdf.worker.js en tu propio servidor.
+import * as pdfjsLib from 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.js';
 
-pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdfjs/pdf.worker.js';
+// Configura el worker de PDF.js para que también use la versión del CDN.
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.worker.js';
 
 document.addEventListener('DOMContentLoaded', (event) => {
     // URL del PDF: Asegúrate de que esta sea la URL accesible del PDF.
     // Si está en GitHub, debe ser la URL "raw" como el audio.
-    // He asumido que está en la misma ubicación raw de GitHub que el audio.
     const pdfUrl = "https://github.com/LuiguiP11/PodCast/raw/main/Voces%20del%20territorio_La%20EPJA%20desde%20la%20identidad%20y%20la%20comunidad.pdf";
     const openPdfBtn = document.getElementById('openPdfBtn');
 
@@ -21,11 +20,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     // Obtener la referencia al elemento de audio del podcast
     const podcastAudio = document.getElementById('podcastAudio');
-    // IMPORTANTE: Elimina o comenta la siguiente línea.
     // La fuente del audio ya está definida correctamente en el HTML
-    // a través de la etiqueta <source>. Si la sobrescribes con una ruta relativa
-    // que no existe en el servidor de Vercel, el audio no se cargará.
-    // podcastAudio.src = "/Podcast.mp3";
+    // a través de la etiqueta <source>. No es necesario sobrescribirla aquí.
+    // podcastAudio.src = "/Podcast.mp3"; // Esta línea debe permanecer comentada o eliminada
 
     // Obtener referencias a los controles personalizados
     const playPauseBtn = document.getElementById('playPauseBtn');
@@ -46,33 +43,32 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     // Manejador para actualizar la barra de progreso mientras el audio se reproduce
     podcastAudio.addEventListener('timeupdate', () => {
-        // Calcula el porcentaje de progreso
-        const progress = (podcastAudio.currentTime / podcastAudio.duration) * 100;
-        // Establece el ancho de la barra de progreso
-        progressBar.style.width = `${progress}%`;
+        // Asegúrate de que la duración sea un número válido para evitar errores de división por cero
+        if (!isNaN(podcastAudio.duration) && podcastAudio.duration > 0) {
+            const progress = (podcastAudio.currentTime / podcastAudio.duration) * 100;
+            progressBar.style.width = `${progress}%`;
+        }
     });
 
     // Manejador para permitir al usuario saltar a una parte del audio haciendo clic en la barra de progreso
     progressContainer.addEventListener('click', (e) => {
-        // Calcula el ancho total del contenedor de la barra de progreso
-        const width = progressContainer.clientWidth;
-        // Obtiene la posición X del clic dentro del contenedor
-        const clickX = e.offsetX;
-        // Obtiene la duración total del audio
-        const duration = podcastAudio.duration;
-        // Calcula el nuevo tiempo de reproducción y lo establece
-        podcastAudio.currentTime = (clickX / width) * duration;
+        // Asegúrate de que la duración sea un número válido
+        if (!isNaN(podcastAudio.duration) && podcastAudio.duration > 0) {
+            const width = progressContainer.clientWidth;
+            const clickX = e.offsetX;
+            const duration = podcastAudio.duration;
+            podcastAudio.currentTime = (clickX / width) * duration;
+        }
     });
 
-    // Manejador para el control de volumen
+    // Control de volumen
     volumeSlider.addEventListener('input', () => {
-        // Establece el volumen del audio según el valor del slider
         podcastAudio.volume = volumeSlider.value;
     });
 
-    // Manejador cuando el audio termina de reproducirse
+    // Cuando el audio termina, resetear el botón y la barra
     podcastAudio.addEventListener('ended', () => {
-        playPauseBtn.textContent = '▶'; // Restablece el icono a reproducir
-        progressBar.style.width = '0%'; // Restablece la barra de progreso a 0%
+        playPauseBtn.textContent = '▶';
+        progressBar.style.width = '0%';
     });
 });
