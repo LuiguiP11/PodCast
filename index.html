@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Podcast</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #121212;
+            color: white;
+            font-family: 'Montserrat', sans-serif; /* Aplicamos la fuente Montserrat */
+            margin: 0;
+            overflow-x: hidden; /* Oculta las barras de scroll horizontales */
+        }
+        #splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #121212;
+            display: flex;
+            flex-direction: column; /* Para centrar el video y el botón */
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            animation: zoomIn 1s ease-out forwards; /* Efecto de zoom al cargar */
+        }
+        #splash-video {
+            width: 80%;
+            max-width: 600px; /* Un tamaño máximo para que no sea demasiado grande */
+            height: auto;
+            border-radius: 15px; /* Bordes redondeados para un look más suave */
+            box-shadow: 8px 8px 5px rgba(255, 255, 255, 0.5);
+            margin-bottom: 20px; /* Espacio entre el video y el botón */
+        }
+        #enter-button {
+            background-color: #4CAF50; /* Un verde bonito */
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: all 0.1s ease; /* Transición suave para todos los cambios */
+            /* Efecto 3D y bisel */
+            box-shadow: 0 5px 0 #367C39, /* Sombra inferior para el efecto 3D */
+                        0 2px 0 rgba(255, 255, 255, 0.3) inset, /* Bisel superior claro */
+                        0 -2px 0 rgba(0, 0, 0, 0.2) inset; /* Bisel inferior oscuro */
+            transform: translateY(0); /* Posición inicial */
+        }
+        #enter-button:hover {
+            background-color: #45a049;
+        }
+        #enter-button:active {
+            transform: translateY(5px); /* Efecto de presionado */
+            box-shadow: 0 0px 0 #367C39, /* Elimina la sombra inferior al presionar */
+                        0 2px 0 rgba(255, 255, 255, 0.3) inset, 
+                        0 -2px 0 rgba(0, 0, 0, 0.2) inset;
+        }
+        #p2 {
+            background-color: #1e1e1e;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px auto; /* Centrar p2 */
+            display: none; /* Oculto inicialmente */
+            opacity: 0; /* Para el efecto de desvanecimiento */
+            text-align: center; /* Centrar el texto dentro de p2 */
+            max-width: 800px; /* Limitar el ancho de p2 */
+        }
+        .p2-content-wrapper {
+            /* Estos estilos serán manejados por .futuristic-container-yellow */
+            margin: 20px auto; /* Centrar el contenedor dentro de p2 */
+            max-width: 350px; /* Ajusta el ancho máximo para que se vea como un bloque */
+        }
+        #p2 .header-image {
+            width: 100%; /* Se adapta al ancho del contenedor */
+            height: auto;
+            display: block; /* Para centrar la imagen */
+            margin: 0 auto 20px auto; /* Centrar y añadir espacio abajo */
+            border-radius: 8px; /* Bordes redondeados para la imagen */
+            box-shadow: 5px 5px 0px rgba(255, 255, 255, 0.8); /* Sombra blanca nítida */
+        }
+        .text-audio-block {
+            width: 100%; /* Se adapta al ancho del contenedor */
+            margin: 0 auto; /* Centrar el bloque */
+        }
+        #p2 h2 {
+            font-family: 'Montserrat', sans-serif; /* Aplicamos la fuente Montserrat al título */
+            font-size: 0.9em; /* Reducimos el tamaño del texto aún más */
+            color: #E0E0E0; /* Un color de texto que resalte */
+            margin-top: 20px;
+            margin-bottom: 30px; /* Más espacio entre el título y el audio */
+        }
+        .audio-icon-container {
+            display: flex;
+            align-items: center; /* Alinea verticalmente en el centro */
+            justify-content: center; /* Centra el contenedor horizontalmente */
+            margin: 0 auto; /* Centrar el contenedor */
+            gap: 10px; /* Espacio entre el icono y el audio */
+            width: 100%; /* Se adapta al ancho del contenedor */
+        }
+        .microphone-icon {
+            font-size: 30px; /* Tamaño del icono */
+            color: white; /* Color del icono */
+        }
+        #p2 audio {
+            height: 20px; /* Altura deseada para el reproductor de audio */
+            width: 100%; /* Ocupa todo el ancho disponible */
+        }
+
+        /* Animaciones */
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .fade-out {
+            animation: fadeOut 0.5s ease-out forwards;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in forwards;
+        }
+
+        #welcomeText {
+            font-size: 3em; /* Tamaño grande */
+            font-weight: 700; /* Negrita */
+            color: #00ffff; /* Cian brillante */
+            text-shadow: 0 0 15px rgba(0, 255, 255, 0.8), /* Brillo neón */
+                         0 0 25px rgba(0, 255, 255, 0.6);
+            margin-bottom: 30px; /* Espacio debajo del texto */
+            letter-spacing: 3px; /* Espaciado entre letras para un look futurista */
+            animation: neonGlow 1.5s ease-in-out infinite alternate; /* Animación de brillo */
+        }
+
+        @keyframes neonGlow {
+            from {
+                text-shadow: 0 0 10px rgba(0, 255, 255, 0.6),
+                             0 0 20px rgba(0, 255, 255, 0.4);
+            }
+            to {
+                text-shadow: 0 0 20px rgba(0, 255, 255, 0.9),
+                             0 0 30px rgba(0, 255, 255, 0.7),
+                             0 0 40px rgba(0, 255, 255, 0.5);
+            }
+        }
+
+        .futuristic-container-yellow {
+            background: linear-gradient(145deg, #3a3a3a, #2a2a2a); /* Fondo oscuro */
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.2), /* Sombra dorada */
+                        0 0 15px rgba(255, 215, 0, 0.1); /* Resplandor dorado */
+            border: 1px solid #ffd700; /* Borde dorado */
+            margin: 20px auto; /* Centrar y dar espacio */
+            width: 90%; /* Ancho flexible */
+            max-width: 400px; /* Ancho máximo para pantallas grandes */
+            text-align: center; /* Centrar contenido */
+            transition: all 0.3s ease;
+        }
+
+        .futuristic-container-yellow:hover {
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.3),
+                        0 0 20px rgba(255, 215, 0, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .custom-audio-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 5px; /* Ajuste para acercar al micrófono */
+            background: linear-gradient(145deg, #2a2a2a, #1a1a1a); /* Degradado oscuro y futurista */
+            padding: 18px 30px; /* Un poco más de padding */
+            border-radius: 15px; /* Bordes más redondeados */
+            box-shadow: 0 8px 20px rgba(0, 255, 255, 0.2), /* Sombra con brillo cian */
+                        0 0 15px rgba(0, 255, 255, 0.1); /* Pequeño resplandor */
+            border: 1px solid #00ffff; /* Borde cian brillante */
+            max-width: 380px; /* Un poco más ancho */
+            margin-left: auto;
+            margin-right: auto;
+            transition: all 0.3s ease; /* Transición suave para hover */
+        }
+
+        .custom-audio-controls:hover {
+            box-shadow: 0 10px 25px rgba(0, 255, 255, 0.3),
+                        0 0 20px rgba(0, 255, 255, 0.2);
+            transform: translateY(-2px); /* Efecto de "flotar" */
+        }
+
+        #playPauseBtn {
+            background: linear-gradient(45deg, #007bff, #00c6ff); /* Degradado azul a cian */
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px; /* Un poco más grande */
+            height: 60px;
+            font-size: 2.2em; /* Icono más grande */
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4); /* Sombra azul */
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.7); /* Brillo en el icono */
+        }
+
+        #playPauseBtn:hover {
+            background: linear-gradient(45deg, #00c6ff, #007bff); /* Invertir degradado al hover */
+            transform: scale(1.1); /* Efecto de zoom */
+            box-shadow: 0 8px 20px rgba(0, 123, 255, 0.6);
+        }
+
+        #playPauseBtn:active {
+            transform: scale(0.95);
+            box-shadow: 0 2px 5px rgba(0, 123, 255, 0.2);
+        }
+
+        .progress-container {
+            flex-grow: 1;
+            height: 12px; /* Un poco más alto */
+            background-color: #333; /* Fondo más oscuro */
+            border-radius: 6px;
+            cursor: pointer;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid #555; /* Borde sutil */
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #28a745, #00ff00); /* Degradado verde neón */
+            border-radius: 6px;
+            transition: width 0.1s linear;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.5); /* Brillo verde */
+        }
+
+        #volumeSlider {
+            width: 100px; /* Un poco más ancho */
+            -webkit-appearance: none;
+            background: transparent;
+        }
+
+        #volumeSlider::-webkit-slider-runnable-track {
+            height: 10px; /* Un poco más alto */
+            background: #444;
+            border-radius: 5px;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.6); /* Sombra interna */
+        }
+
+        #volumeSlider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 22px; /* Más grande */
+            width: 22px; /* Más grande */
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ffc107, #ffeb3b); /* Degradado amarillo a dorado */
+            margin-top: -6px; /* Ajuste para centrar */
+            box-shadow: 0 3px 8px rgba(255, 193, 7, 0.5),
+                        0 0 10px rgba(255, 255, 0, 0.3); /* Brillo amarillo */
+            cursor: grab;
+            border: 1px solid #ffa000; /* Borde naranja */
+            transition: all 0.2s ease;
+        }
+
+        #volumeSlider::-webkit-slider-thumb:hover {
+            transform: scale(1.1);
+        }
+
+        #volumeSlider::-webkit-slider-thumb:active {
+            cursor: grabbing;
+            transform: scale(0.9);
+            box-shadow: 0 1px 3px rgba(255, 193, 7, 0.3);
+        }
+
+        #pdfViewer {
+            width: 100%; /* Ocupa todo el ancho disponible */
+            height: 70vh; /* Una altura que se adapta al 70% de la altura de la ventana */
+            /* Los estilos de borde, sombra y margen serán manejados por .futuristic-container-yellow */
+        }
+
+        #pdfCanvas {
+            width: 100%; /* Ocupa todo el ancho disponible */
+            height: 70vh; /* Una altura que se adapta al 70% de la altura de la ventana */
+            border: 1px solid #ffd700; /* Borde dorado, a juego con los contenedores */
+            border-radius: 10px; /* Bordes redondeados */
+            margin-top: 20px; /* Espacio encima del canvas */
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.2); /* Sombra con brillo dorado */
+            background-color: #fff; /* Fondo blanco para el PDF */
+        }
+    </style>
+</head>
+<body>
+    <div id="splash-screen">
+        <div id="welcomeText">Bienvenidos</div>
+        <video id="splash-video" muted>
+            <source src="https://github.com/LuiguiP11/PodCast/raw/main/Podcast_video.mp4.mp4" type="video/mp4">
+            Tu navegador no soporta la etiqueta de video.
+        </video>
+        <button id="enter-button">Ingresar</button>
+        <p style="text-align: center; font-size: 0.8em; color: #888; margin-top: 20px;">© 2025 Lic. Luis Ygnacio Ponce Sierra | Todos los derechos reservados</p>
+    </div>
+    <script type="module" src="/PodCast/main.js"></script>
+    <p style="text-align: center; font-size: 0.8em; color: #888; margin-top: 50px;">© 2025 Lic. Luis Ygnacio Ponce Sierra | Todos los derechos reservados</p>
+</body>
+</html>
