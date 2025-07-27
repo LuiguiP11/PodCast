@@ -3,7 +3,7 @@ import * as pdfjsLib from '/PodCast/pdfjs/pdf.mjs';
 pdfjsLib.GlobalWorkerOptions.workerSrc = '/PodCast/pdfjs/pdf.worker.mjs';
 
 document.addEventListener('DOMContentLoaded', (event) => {
-    const pdfUrl = "https://raw.githack.com/LuiguiP11/PodCast/main/Voces%20del%20territorio_La%20EPJA%20desde%20la%20identidad%20y%20la%20comunidad.pdf";
+    const pdfUrl = "https://raw.githubusercontent.com/LuiguiP11/PodCast/main/Voces%20del%20territorio_La%20EPJA%20desde%20la%20identidad%20y%20la%20comunidad.pdf";
     const openPdfBtn = document.getElementById('openPdfBtn');
 
     if (openPdfBtn) {
