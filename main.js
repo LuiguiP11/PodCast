@@ -16,13 +16,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 // La redirección a podcast.html se manejará en video.onended
             })
             .catch(error => {
-                window.location.href = '/PodCast/podcast.html'; // Redirigir a podcast.html
+                window.location.href = '/podcast.html'; // Redirigir a podcast.html
             })
             .catch(error => {
                 console.error('Error al intentar reproducir el video:', error);
                 // Si el video no se puede reproducir automáticamente, forzar la transición
                 console.log('Forzando transición a podcast.html debido a error de reproducción automática.');
-                window.location.href = '/PodCast/podcast.html'; // Redirigir a podcast.html incluso si hay error
+                window.location.href = '/podcast.html'; // Redirigir a podcast.html incluso si hay error
             });
         }
     });
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         splashScreen.classList.add('fade-out');
         setTimeout(() => {
             splashScreen.style.display = 'none';
-            window.location.href = '/PodCast/podcast.html'; // Redirigir a podcast.html
+            window.location.href = '/podcast.html'; // Redirigir a podcast.html
         }, 500); // Espera a que termine la animación de fadeOut (0.5s)
     };
 });
