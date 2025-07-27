@@ -1,6 +1,6 @@
-import * as pdfjsLib from '/PodCast/pdfjs/pdf.mjs';
+import * as pdfjsLib from '/PodCast/pdfjs/pdf.js';
 
-pdfjsLib.GlobalWorkerOptions.workerSrc = '/PodCast/pdfjs/pdf.worker.mjs';
+pdfjsLib.GlobalWorkerOptions.workerSrc = '/PodCast/pdfjs/pdf.worker.js';
 
 document.addEventListener('DOMContentLoaded', (event) => {
     const pdfUrl = "https://raw.githubusercontent.com/LuiguiP11/PodCast/main/Voces%20del%20territorio_La%20EPJA%20desde%20la%20identidad%20y%20la%20comunidad.pdf"; 
